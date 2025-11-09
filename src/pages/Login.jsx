@@ -1,6 +1,7 @@
 // src/components/Login.jsx (Updated)
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router";
+import { toast } from "sonner";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -20,12 +21,15 @@ const Login = () => {
     if (user) {
       if (user.hasCompletedQuiz) {
         setError("You have already completed the quiz. You cannot retake it.");
+        toast.error(
+          "You have already completed the quiz. You cannot retake it."
+        );
         // Optionally, redirect to results or home page directly if already completed
         // navigate('/results', { state: { username: user.username, score: 'N/A', totalQuestions: 'N/A' } });
         return;
       }
       localStorage.setItem("currentUser", username);
-      alert("Login successful!");
+      toast.success("Login successful!");
       navigate("/quiz");
     } else {
       setError("Invalid username or password.");

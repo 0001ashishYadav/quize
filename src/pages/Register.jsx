@@ -1,6 +1,7 @@
 // src/components/Register.jsx (Updated)
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router";
+import { toast } from "sonner";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -16,6 +17,7 @@ const Register = () => {
 
     if (users.some((user) => user.username === username)) {
       setError("Username already exists. Please choose a different one.");
+      toast.error("Username already exists. Please choose a different one.");
       return;
     }
 
@@ -24,7 +26,7 @@ const Register = () => {
     users.push(newUser);
     localStorage.setItem("quizUsers", JSON.stringify(users));
 
-    alert("Registration successful! Please log in.");
+    toast.success("Registration successful! Please log in.");
     navigate("/login");
   };
 

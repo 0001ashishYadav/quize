@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { questions } from "../quizData";
 import { useNavigate } from "react-router";
+import { toast } from "sonner";
 
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -41,7 +42,9 @@ const Quiz = () => {
     const users = JSON.parse(localStorage.getItem("quizUsers")) || [];
     const currentUserData = users.find((u) => u.username === username);
     if (currentUserData && currentUserData.hasCompletedQuiz) {
-      alert("You have already completed this quiz and cannot retake it.");
+      toast.warning(
+        "You have already completed this quiz and cannot retake it."
+      );
       navigate("/results", {
         state: {
           score: "N/A", // Indicate no score as it was already completed

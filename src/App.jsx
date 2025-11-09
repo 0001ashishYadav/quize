@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Quiz from "./pages/Quiz";
 import Results from "./pages/Results";
+import { Toaster } from "sonner";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -83,6 +84,13 @@ function App() {
         </Route>
         {/* Any other public routes */}
       </Routes>
+
+      <Toaster
+        position="top-center"
+        closeButton
+        expand={true}
+        visibleToasts={3}
+      />
     </Router>
   );
 }
